@@ -63,7 +63,7 @@
 </head>
 
 <body>
-	<h2>До зникнення твоєї мами:</h2>
+	<h2 id="text">До зникнення твоєї мами:</h2>
 	<div class="countdown" id=countdown>
 		<div class="time">
 			<h2 id="hours">00</h2>
@@ -84,14 +84,18 @@
 	</div>
 
 	<script>
+
 		const hours = document.querySelector('#hours')
 		const min = document.querySelector('#minutes')
 		const sec = document.querySelector('#seconds')
 		const milisec = document.querySelector('#miliseconds')
-		function updateCounter() {
+		const text = document.querySelector('#text')
+
+			function updateCounter() {
 			var mama = new Date("September 3 2022 00:00:00")
 			var diff = mama - new Date()
 
+			if (diff>0) {
 			const hoursA = Math.floor(diff / 1000 / 60 / 60) % 24
 			const minA = Math.floor(diff / 1000 / 60) % 60
 			const secA = Math.floor(diff / 1000) % 60
@@ -100,9 +104,17 @@
 			hours.innerText = hoursA
 			min.innerText = minA
 			sec.innerText = secA
-			milisec.innerText = milisecA
+			milisec.innerText = milisecA}
+			else {
+				document.getElementsByClassName('time')[0].style= "display: none;";
+				document.getElementsByClassName('time')[1].style= "display: none;";
+				document.getElementsByClassName('time')[2].style= "display: none;";
+				document.getElementsByClassName('time')[3].style= "display: none;";
+				text.innerText = "У тебе зникла мама!!"
+				text.style = "font-size: 300%"
+			}
 		}
-		updateCounter()
+
 
 		setInterval(updateCounter, 1)
 	</script>
