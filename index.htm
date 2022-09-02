@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Мама</title>
+	<style>
+		body {
+			font-family: 'Rubik', sans-serif;
+		}
+		h2 {
+			text-align: center;
+		}
+
+		.countdown {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.time {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			margin: 30px;
+		}
+
+		.time h2 {
+			margin: 0 0 10px;
+			font-size: 48px;
+		}
+
+		.time small {
+			font-size: 26px;
+		}
+
+		@media (max-width: 500px) {
+			.title {
+				font-size: 35px;
+			}
+
+			.countdown {
+				align-items: center;
+			}
+
+			.time {
+				margin: 10px;
+			}
+
+			.time h2 {
+				font-size: 32px;
+				margin: 0;
+			}
+
+			.time small {
+				font-size: 16px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<h2>До зникнення твоєї мами:</h2>
+	<div class="countdown" id=countdown>
+		<div class="time">
+			<h2 id="hours">00</h2>
+			<small>годин</small>
+		</div>
+		<div class="time">
+			<h2 id="minutes">00</h2>
+			<small>хвилин</small>
+		</div>
+		<div class="time">
+			<h2 id="seconds">00</h2>
+			<small>секунд</small>
+		</div>
+		<div class="time">
+			<h2 id="miliseconds">00</h2>
+			<small>мілісекунд</small>
+		</div>
+	</div>
+
+	<script>
+		const hours = document.querySelector('#hours')
+		const min = document.querySelector('#minutes')
+		const sec = document.querySelector('#seconds')
+		const milisec = document.querySelector('#miliseconds')
+		function updateCounter() {
+			var mama = new Date("September 3 2022 00:00:00")
+			var diff = mama - new Date()
+
+			const hoursA = Math.floor(diff / 1000 / 60 / 60) % 24
+			const minA = Math.floor(diff / 1000 / 60) % 60
+			const secA = Math.floor(diff / 1000) % 60
+			const milisecA = Math.floor(diff) % 1000
+
+			hours.innerText = hoursA
+			min.innerText = minA
+			sec.innerText = secA
+			milisec.innerText = milisecA
+		}
+		updateCounter()
+
+		setInterval(updateCounter, 1)
+	</script>
+</body>
+
+</html>
